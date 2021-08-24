@@ -40,7 +40,7 @@ const LoginPage = ({ history }) => {
 
       dispatch(loginUser(requestData))
         .then((res) => {
-          if (res.payload.loginSuccess) {
+          if (res.payload.result) {
             history.push("/");
           } else {
             alert("request Success but, login Fail");
