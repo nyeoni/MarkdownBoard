@@ -36,11 +36,7 @@ function App() {
         <Route exact path="/board/all" component={Auth(MainPage, true)} />
         <Route exact path="/board/my" component={Auth(MainPage, true)} />
         <Route exact path="/login" component={Auth(LoginPage, false)} />
-        <Route
-          exact
-          path="/register"
-          render={() => Auth(RegisterPage, false)}
-        />
+        <Route exact path="/register" component={Auth(RegisterPage, false)} />
       </Switch>
     </Router>
   );
