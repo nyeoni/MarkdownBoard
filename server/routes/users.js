@@ -1,6 +1,7 @@
 require('dotenv').config();
 const env = process.env;
 const login_api = env.LOGIN;
+const register_api = env.REGISTER;
 const express = require('express');
 const router = express.Router();
 const controller = require('./../controllers/users');
@@ -12,5 +13,7 @@ router.get('/', function(req, res, next) {
 
 router.post(login_api, controller.login);
 // router.post('/login', controller.login);
+
+router.post(register_api, controller.register);
 
 module.exports = router;

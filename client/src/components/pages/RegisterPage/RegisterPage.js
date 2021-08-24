@@ -74,29 +74,35 @@ const RegisterPage = ({ history }) => {
       };
 
       // temp
-      history.push("/login");
-      notification.open({
-        message: "회원가입 완료!",
-        description:
-          "환영합니다! 회원가입을 축하합니다. 가입한 아이디와 비밀번호로 로그인해주세요.",
-        icon: <SmileOutlined style={{ color: "#108ee9" }} />,
-      });
+      // history.push("/login");
+      // notification.open({
+      //   message: "회원가입 완료!",
+      //   description:
+      //     "환영합니다! 회원가입을 축하합니다. 가입한 아이디와 비밀번호로 로그인해주세요.",
+      //   icon: <SmileOutlined style={{ color: "#108ee9" }} />,
+      // });
 
       // real
 
-      //   dispatch(registUser(requestData)).then((res) => {
-      //     if (res.payload.result) {
-      //       history.goBack();
-      //       notification.open({
-      //         message: "Notification Title",
-      //         description:
-      //           "This is the content of the notification. This is the content of the notification. This is the content of the notification.",
-      //         icon: <SmileOutlined style={{ color: "#108ee9" }} />,
-      //       });
-      //     } else {
-      //       alert("Error 400: 회원가입을 실패하였습니다!");
-      //     }
-      //   });
+        dispatch(registUser(requestData)).then((res) => {
+          if (res){
+            console.log("null");
+          }
+          console.log(res);
+          if (res.payload.result) {
+            history.push('/login');
+            notification.open({
+              message: "Notification Title",
+              description:
+                "This is the content of the notification. This is the content of the notification. This is the content of the notification.",
+              icon: <SmileOutlined style={{ color: "#108ee9" }} />,
+            });
+          } else {
+            alert("Error 400: 회원가입을 실패하였습니다!");
+          }
+        }).catch((err)=>{
+          console.log(err);
+        })
     },
     [user_id, email, name, password, dispatch, history]
   );
