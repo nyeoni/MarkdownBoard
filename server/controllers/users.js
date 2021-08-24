@@ -1,9 +1,14 @@
 require('dotenv').config();
 const env = process.env;
 const secret_key = env.SECRET_KEY;
+const admin_id = env.ADMIN_ID;
+
+const {verifyToken} = require("../utils/auth");
 const {user} = require(('./../models'));
+
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+
 const saltRounds = 10
 let is_admin = false;
 
@@ -14,7 +19,6 @@ const login = function(req, res){
 		
 		if (!info) {
 			return res.status(400).json({
-				token: null,
 				result: false,
 				message: "존재하지 않는 아이디 입니다.",
 				isAmin: is_admin,
@@ -27,9 +31,25 @@ const login = function(req, res){
 				if (result) {
 					if (id == env.ADMIN_ID) is_admin = true;
 
-					const token = jwt.sign({key_id: info.id}, secret_key, {expiresIn: '2h'});
+					// const refreshToken = jwt.sign({key_id: info.id},
+					// 	secret_key,
+					// 	{
+					// 		expiresIn: '14d',
+					// 		issuer: "nkim",
+					// 	});
+
+					const accessToken = jwt.sign({key_id: info.id},
+						secret_key,
+						{
+							expiresIn: '1h',
+							issuer: "nkim",
+						});
+
+					//DB에 refreshToken 저장
+
+					//웹 브라우저(클라이언트)에 accessToken 세팅
+					res.cookie('access', accessToken);
 					return res.status(200).json({
-						token,
 						result: true,
 						message: `환영합니다. ${info.name}님.`,
 						isAmin: is_admin,
@@ -38,7 +58,6 @@ const login = function(req, res){
 				}
 				else {
 					return res.status(400).json({
-						token: null,
 						result: false,
 						message: "비밀번호가 틀렸습니다.",
 						isAmin: is_admin,
@@ -48,7 +67,6 @@ const login = function(req, res){
 			}).catch((err)=> {
 				console.log(err);
 				return res.status(400).json({
-					token: null,
 					result: false,
 					message: "해시 오류발생",
 					isAmin: is_admin,
@@ -60,7 +78,6 @@ const login = function(req, res){
 	.catch((err)=> {
 		console.log(err);
 		return res.status(400).json({
-			token: null,
 			result: false,
 			message: "오류발생",
 			isAmin: is_admin,
@@ -172,4 +189,71 @@ const register = function(req, res){
 	// })
 }
 
-module.exports = { login: login, register: register };
+const auth = async function(req, res){
+
+	//접근 토큰이 없는 경우
+	if (req.cookies.access === undefined) {
+		return res.status(200).json({
+			result: true,
+			message: "접근 토큰이 없습니다.",
+			isAmin: false,
+			isAuth: false,
+		});
+	}
+
+	// 토큰
+	const accessToken = await verifyToken(req.cookies.access);
+	// const refreshToken = verifyToken(req.cookies.refresh);
+
+	// accessToken이 만료된 경우
+	if (accessToken === null) {
+		return res.status(200).json({
+			result: true,
+			message: "접근 토큰이 만료되었습니다.",
+			isAmin: false,
+			isAuth: false,
+		});
+	}
+
+	const tokenId = accessToken.key_id;
+	user.findOne({where:{id:tokenId}}).then((info)=>{
+		if (info.user_id == admin_id){
+			return res.status(200).json({
+				result: true,
+				message: "관리자 토큰 확인",
+				isAmin: true,
+				isAuth: true,
+			});
+		}
+		else if (info) {
+			return res.status(200).json({
+				result: true,
+				message: "회원 토큰 확인",
+				isAmin: false,
+				isAuth: true,
+			});
+		}
+		else {
+			return res.status(200).json({
+				result: true,
+				message: "토큰에 해당하는 아이디가 존재하지 않습니다.",
+				isAmin: false,
+				isAuth: false,
+			});
+		}
+	}).catch((err)=>{
+		console.log(err);
+		return res.status(400).json({
+			result: true,
+			message: "접근 토큰 아이디 조회 에러",
+			isAmin: false,
+			isAuth: false,
+		});
+	})
+}
+
+module.exports = {
+	login: login,
+	register: register,
+	auth: auth,
+ };
