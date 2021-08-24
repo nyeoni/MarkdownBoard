@@ -6,7 +6,6 @@ import RegisterPage from "./components/pages/RegisterPage/RegisterPage";
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MainPage from "./components/pages/MainPage/MainPage";
-import BasePage from "./components/Base";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -24,10 +23,10 @@ function App() {
     <Router>
       <GlobalStyle />
       <Switch>
-        {/* <Route exact path="/" render={() => <MainPage />} />
+        <Route exact path="/" render={() => <MainPage />} />
         <Route exact path="/board/all" render={() => <MainPage />} />
-        <Route exact path="/board/my" render={() => <BasePage />} /> */}
-        <Route exact path="/" render={() => <LoginPage />} />
+        <Route exact path="/board/my" render={() => <MainPage />} />
+        <Route exact path="/login" render={() => <LoginPage />} />
         <Route exact path="/register" render={() => <RegisterPage />} />
       </Switch>
     </Router>

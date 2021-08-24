@@ -1,7 +1,8 @@
 import React from "react";
 import { Layout } from "antd";
 import { Logo } from "./pages/LoginPage/LoginComponents";
-import Nav from "./Nav";
+import { Nav, NavItem } from "./Nav";
+import { SmileFilled } from "@ant-design/icons";
 const { Header, Footer, Content } = Layout;
 
 const BasePage = ({ children }) => {
@@ -35,6 +36,9 @@ const BasePage = ({ children }) => {
       <Header style={headerStyle}>
         <Logo style={{ width: "200px" }} />
         <Nav />
+        <NavItem path="/" value="내프로필">
+          <SmileFilled style={{ marginRight: "8px" }} />
+        </NavItem>
       </Header>
       <Content style={contentStyle}>{children}</Content>
       <Footer style={footerStyle}>

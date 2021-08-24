@@ -32,18 +32,22 @@ const LoginPage = ({ history }) => {
   const onLogin = useCallback(
     (e) => {
       e.preventDefault();
-      const requestData = {
+      let requestData = {
         id: userid,
         password,
       };
-      console.log(`onLogin: ${requestData}`);
+      console.log(requestData);
 
       dispatch(loginUser(requestData))
         .then((res) => {
-          if (res.payload.loginSuccess) {
+          if (res.payload.result) {
             history.push("/");
           } else {
             alert("request Success but, login Fail");
+            setInputs({
+              userid: "",
+              password: "",
+            });
           }
         })
         .catch((err) => {
