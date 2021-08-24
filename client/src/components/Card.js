@@ -33,3 +33,11 @@ export const CardPost = ({ title, description, path }) => {
     </Link>
   );
 };
+
+export const CardSkeleton = styled.div`
+  width: 280px;
+  border-radius: 15px;
+  margin-right: 15px;
+  margin-left: 10px;
+  margin-bottom: 26px;
+`;

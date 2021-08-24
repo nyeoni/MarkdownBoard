@@ -40,9 +40,9 @@ function useAsync(callback, deps = [], skip = false) {
     dispatch({ type: LOADING });
     try {
       const data = await callback();
-      dispatch({ type: SUCCESS });
+      dispatch({ type: SUCCESS, data });
     } catch (err) {
-      dispatch({ type: ERROR });
+      dispatch({ type: ERROR, err: err });
     }
   };
 

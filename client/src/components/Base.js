@@ -38,7 +38,6 @@ const BasePage = ({ children }) => {
         width: "100%",
         height: "100%",
         justifyContent: "space-between",
-        minHeight: "100%",
       }}
     >
       <Header style={headerStyle}>
