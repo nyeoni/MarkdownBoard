@@ -25,22 +25,22 @@ function App() {
     <Router>
       <GlobalStyle />
       <Switch>
-        <Route exact path="/" render={() => <MainPage />} />
+        {/* <Route exact path="/" render={() => <MainPage />} />
         <Route exact path="/myboard" render={() => <MainPage />} />
         <Route exact path="/write" render={() => <MainPage />} />
         <Route exact path="/login" render={() => <LoginPage />} />
-        <Route exact path="/register" render={() => <RegisterPage />} />
+        <Route exact path="/register" render={() => <RegisterPage />} /> */}
 
         {/* real */}
-        {/* <Route exact path="/" render={() => Auth(MainPage, true)} />
-        <Route exact path="/board/all" render={() => Auth(MainPage, true)} />
-        <Route exact path="/board/my" render={() => Auth(MainPage, true)} />
-        <Route exact path="/login" render={() => Auth(LoginPage, false)} />
+        <Route exact path="/" component={Auth(MainPage, true)} />
+        <Route exact path="/board/all" component={Auth(MainPage, true)} />
+        <Route exact path="/board/my" component={Auth(MainPage, true)} />
+        <Route exact path="/login" component={Auth(LoginPage, false)} />
         <Route
           exact
           path="/register"
           render={() => Auth(RegisterPage, false)}
-        /> */}
+        />
       </Switch>
     </Router>
   );
