@@ -24,10 +24,10 @@ function App() {
     <Router>
       <GlobalStyle />
       <Switch>
-        <Route exact path="/" render={() => <MainPage />} />
+        {/* <Route exact path="/" render={() => <MainPage />} />
         <Route exact path="/board/all" render={() => <MainPage />} />
-        <Route exact path="/board/my" render={() => <BasePage />} />
-        <Route exact path="/login" render={() => <LoginPage />} />
+        <Route exact path="/board/my" render={() => <BasePage />} /> */}
+        <Route exact path="/" render={() => <LoginPage />} />
         <Route exact path="/register" render={() => <RegisterPage />} />
       </Switch>
     </Router>
