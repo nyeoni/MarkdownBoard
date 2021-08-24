@@ -15,7 +15,8 @@ export function loginUser(requestData) {
 export function registUser(requestData) {
   const res = axios
     .post("/api/v0/user/register", requestData)
-    .then((res) => res.data);
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
 
   return {
     type: REGIST_USER,
