@@ -8,9 +8,13 @@ const jwt = require('jsonwebtoken');
 const login = function(req, res){
 	const {id, password} = req.body;
 
+	console.log(id,password);
+
 	user.findOne({where: {user_id: id}}).then((info) => {
+
 		if (!info) {
 			return res.status(400).json({
+				token: null,
 				result: false,
 				message: "존재하지 않는 아이디 입니다."
 			});
@@ -28,6 +32,7 @@ const login = function(req, res){
 				}
 				else {
 					return res.status(400).json({
+						token: null,
 						result: false,
 						message: "비밀번호가 틀렸습니다."
 					})
@@ -35,6 +40,7 @@ const login = function(req, res){
 			}).catch((err)=> {
 				console.log(err);
 				return res.status(400).json({
+					token: null,
 					result: false,
 					message: "해시 오류발생"
 				})
