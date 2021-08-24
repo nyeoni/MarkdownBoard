@@ -1,0 +1,9 @@
+target:
+  team_slug: "@42js/beta-pisciner"
+  team_role: "member"
+
+subjects:
+  RUSH00:
+    glob: "**/*"
+    asOfDate: "2021-08-23T12:00:00.000+09:00"
+    dueDate: "2021-08-24T23:41:59.000+09:00"
