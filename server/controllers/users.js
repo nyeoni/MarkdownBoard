@@ -5,14 +5,9 @@ const {user} = require(('./../models'));
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-// user.findOne({where: {user_id: 'iha9704'}}).then((info) => {
-// 	const token = jwt.sign({key_id: info.id}, secret_key, {expiresIn: '2h'});
-// 	console.log(token)
-// }).catch((err)=>{console.log(err)})
-
 const login = function(req, res){
 	const {id, password} = req.body;
-	let hashpass;
+
 	user.findOne({where: {user_id: id}}).then((info) => {
 		if (!info) {
 			return res.status(400).json({
