@@ -24,7 +24,7 @@ export const NavItem = ({ value, path, style, children, active }) => {
   };
   const localstyle = {
     ...style,
-    margin: "0 15px",
+    margin: "0 20px",
   };
   return (
     <NavLink to={path} activeStyle={activeStyle} style={localstyle}>
@@ -37,8 +37,9 @@ export const NavItem = ({ value, path, style, children, active }) => {
 export const Nav = () => {
   return (
     <NavContainer>
-      <NavItem value="전체게시물" path="/board/all" activeStyle />
-      <NavItem value="내게시물" path="/board/my" activeStyle />
+      <NavItem value="전체게시물" path="/" activeStyle />
+      <NavItem value="내게시물" path="/myboard" activeStyle />
+      <NavItem value="글쓰기" path="/write" activeStyle />
     </NavContainer>
   );
 };

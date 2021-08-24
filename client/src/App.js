@@ -6,6 +6,7 @@ import RegisterPage from "./components/pages/RegisterPage/RegisterPage";
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MainPage from "./components/pages/MainPage/MainPage";
+import Auth from "./hoc/auth";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -15,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
 
   #root {
 	width: 100%;
+	height: 100%;
   }
 `;
 
@@ -24,10 +26,21 @@ function App() {
       <GlobalStyle />
       <Switch>
         <Route exact path="/" render={() => <MainPage />} />
-        <Route exact path="/board/all" render={() => <MainPage />} />
-        <Route exact path="/board/my" render={() => <MainPage />} />
+        <Route exact path="/myboard" render={() => <MainPage />} />
+        <Route exact path="/write" render={() => <MainPage />} />
         <Route exact path="/login" render={() => <LoginPage />} />
         <Route exact path="/register" render={() => <RegisterPage />} />
+
+        {/* real */}
+        {/* <Route exact path="/" render={() => Auth(MainPage, true)} />
+        <Route exact path="/board/all" render={() => Auth(MainPage, true)} />
+        <Route exact path="/board/my" render={() => Auth(MainPage, true)} />
+        <Route exact path="/login" render={() => Auth(LoginPage, false)} />
+        <Route
+          exact
+          path="/register"
+          render={() => Auth(RegisterPage, false)}
+        /> */}
       </Switch>
     </Router>
   );

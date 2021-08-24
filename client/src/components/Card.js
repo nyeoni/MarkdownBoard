@@ -9,7 +9,7 @@ const { Meta } = Card;
 export const CardContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
 `;
 

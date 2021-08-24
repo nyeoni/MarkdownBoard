@@ -2,7 +2,7 @@ import React from "react";
 import { Layout } from "antd";
 import { Logo } from "./pages/LoginPage/LoginComponents";
 import { Nav, NavItem } from "./Nav";
-import { SmileFilled } from "@ant-design/icons";
+import { SmileOutlined } from "@ant-design/icons";
 const { Header, Footer, Content } = Layout;
 
 const BasePage = ({ children }) => {
@@ -11,6 +11,7 @@ const BasePage = ({ children }) => {
     padding: "40px 150px",
     display: "flex",
     flexWrap: "wrap",
+    justifyContent: "space-around",
     position: "relative",
     overflow: "visible",
     background: "#e9ecef",
@@ -32,12 +33,19 @@ const BasePage = ({ children }) => {
   };
 
   return (
-    <Layout style={{ width: "100%", height: "100%" }}>
+    <Layout
+      style={{
+        width: "100%",
+        height: "100%",
+        justifyContent: "space-between",
+        minHeight: "100%",
+      }}
+    >
       <Header style={headerStyle}>
         <Logo style={{ width: "200px" }} />
         <Nav />
         <NavItem path="/" value="내프로필">
-          <SmileFilled style={{ marginRight: "8px" }} />
+          <SmileOutlined style={{ marginRight: "8px" }} />
         </NavItem>
       </Header>
       <Content style={contentStyle}>{children}</Content>
