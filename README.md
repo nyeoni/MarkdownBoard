@@ -1,3 +1,24 @@
+# MarkdownBoard
+
+### 구현기능
+- 회원가입
+- 로그인
+- jwt token 을 이용한 api
+
+---
+
+# UI
+### 회원가입
+<img width="1792" alt="Screen Shot 2021-08-26 at 6 41 16 PM" src="https://user-images.githubusercontent.com/51353146/130940621-06efad9e-d5cd-43aa-bace-c97a3767a99e.png">
+<img width="1792" alt="Screen Shot 2021-08-26 at 6 34 24 PM" src="https://user-images.githubusercontent.com/51353146/130940016-fd3bc2d2-f4af-499a-acc6-ba960b646a14.png">
+
+### 로그인
+<img width="1792" alt="Screen Shot 2021-08-26 at 6 41 03 PM" src="https://user-images.githubusercontent.com/51353146/130940713-fe2f7f28-8045-4369-bc57-39796c30db07.png">
+<img width="1792" alt="Screen Shot 2021-08-26 at 6 34 40 PM" src="https://user-images.githubusercontent.com/51353146/130940070-8d8a55fb-0194-4b76-86ff-2e1c2e7d1988.png">
+
+### 메인페이지
+<img width="1792" alt="Screen Shot 2021-08-26 at 6 35 05 PM" src="https://user-images.githubusercontent.com/51353146/130940120-fdf00602-2f41-4ca1-a7a3-df9eafa2f6c5.png">
+
 # RUSH 00 - Markdown 기반 게시판 만들기
 
 |                      |                    |
